@@ -1,0 +1,27 @@
+# Multimodal Attendance & Engagement Agent Dependencies
+# Core Backend & API
+fastapi>=0.110.0
+uvicorn>=0.28.0
+python-multipart>=0.0.9
+websockets>=12.0
+python-dotenv>=1.0.0
+
+# Computer Vision & Tracking
+opencv-python>=4.8.0
+numpy>=1.24.0
+pandas>=2.0.0
+
+# Audio Signal Processing
+# Note: For lightweight pure-Python audio signal extraction without external C dependencies,
+# built-in audio math & wave/numpy is supported alongside optional librosa/soundfile
+# librosa
+# soundfile
+
+# Database & ORM
+sqlalchemy>=2.0.0
+
+# AI & LLM Inference (Cloud & Offline Fallback)
+groq>=0.4.0
+
+# Interactive Dashboard
+streamlit>=1.30.0

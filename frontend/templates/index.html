@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>EduSense AI - Multimodal Attendance &amp; Engagement Agent</title>
+  <link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body>
+  <!-- Navigation Header matching Screenshot Page 39 -->
+  <header class="navbar">
+    <div class="nav-brand">
+      <div class="brand-icon">E</div>
+      <div class="brand-text">EduSense AI</div>
+    </div>
+
+    <nav class="nav-tabs">
+      <button class="nav-tab active" data-tab="tab-live">Live Session</button>
+      <button class="nav-tab" data-tab="tab-teacher">Teacher Central</button>
+      <button class="nav-tab" data-tab="tab-analytics">Session Analytics</button>
+    </nav>
+
+    <div class="nav-status">
+      <div class="status-badge">
+        <span class="status-dot"></span>
+        <span id="session-badge-text">SESSION ACTIVE</span>
+        <span id="session-timer" style="color: #ffffff; font-family: monospace; margin-left: 4px;">00:00:00</span>
+      </div>
+      <button class="btn-end-session" id="btn-end-session">End Session</button>
+    </div>
+  </header>
+
+  <main class="main-container">
+    <!-- TAB 1: LIVE SESSION (Page 39) -->
+    <section class="tab-pane active" id="tab-live">
+      <div class="live-dashboard-grid">
+        <!-- Video Feed Container -->
+        <div class="video-card">
+          <div class="video-header">
+            <span class="video-title">
+              <svg width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                <path d="M0 5a2 2 0 0 1 2-2h7.5a2 2 0 0 1 1.983 1.738l3.11-1.382A1 1 0 0 1 16 4.269v7.462a1 1 0 0 1-1.406.913l-3.111-1.382A2 2 0 0 1 9.5 13H2a2 2 0 0 1-2-2V5z"/>
+              </svg>
+              Multimodal Classroom Feed &bull; Computer Vision &amp; Tracking
+            </span>
+            <span style="font-size: 0.8rem; color: #10b981; font-weight: 600;">● LIVE CV PIPELINE</span>
+          </div>
+
+          <div class="video-feed-wrapper">
+            <img src="/video_feed" class="video-feed-img" alt="Live Classroom Stream">
+            <div class="video-overlay-hud">
+              <span id="hud-tracks">Active: --</span>
+              <span id="hud-avg-attn">Avg Attn: --%</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Sidebar Metrics Column -->
+        <div class="side-cards-column">
+          <!-- Audio Context Widget -->
+          <div class="card">
+            <div class="card-header">
+              <span class="card-title">Audio Context &amp; Acoustics</span>
+              <span class="audio-state-tag" id="audio-state-tag">ATTENTIVE SILENCE</span>
+            </div>
+            <div class="audio-meter-box">
+              <div class="meter-stat-row">
+                <span class="meter-label">Noise Level (dB):</span>
+                <span class="meter-value" id="meter-db-value">-45.2 dB</span>
+              </div>
+              <div class="progress-bar-bg">
+                <div class="progress-bar-fill" id="meter-db-fill"></div>
+              </div>
+              <div class="meter-stat-row" style="margin-top: 4px;">
+                <span class="meter-label">Speech vs Silence Ratio:</span>
+                <span class="meter-value" id="meter-speech-ratio" style="font-size: 0.95rem; color: #a5b4fc;">12%</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Real-Time Alerts Stream -->
+          <div class="card" style="flex: 1;">
+            <div class="card-header">
+              <span class="card-title">Real-Time Behavioral Alerts</span>
+              <span style="font-size: 0.75rem; color: #94a3b8;">Active Stream</span>
+            </div>
+            <div class="alerts-container" id="alerts-container">
+              <div class="alert-item alert-info">
+                <span>●</span> <span>System monitoring multimodal signals. Pacing steady.</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Bottom Row: Leaderboard & AI Suggestion Box (Page 39) -->
+      <div class="bottom-dashboard-grid">
+        <!-- Live Leaderboard & Attendance Table -->
+        <div class="card">
+          <div class="card-header">
+            <span class="card-title">Live Attendance &amp; Sustained Presence Roster</span>
+            <span style="font-size: 0.75rem; color: #10b981; font-weight: 600;">Threshold: &gt;10s Sustained</span>
+          </div>
+          <table class="leaderboard-table">
+            <thead>
+              <tr>
+                <th>Rank</th>
+                <th>Student</th>
+                <th>Presence</th>
+                <th>Status</th>
+                <th>Attention</th>
+              </tr>
+            </thead>
+            <tbody id="leaderboard-body">
+              <tr>
+                <td colspan="5" style="text-align: center; color: #64748b; padding: 1.5rem;">Connecting presence tracker...</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <!-- AI Suggestion Box (Page 39) -->
+        <div class="ai-suggestion-box">
+          <div class="ai-box-header">
+            <span class="ai-pill">AI Suggestion Box</span>
+            <span style="font-size: 0.8rem; color: #38bdf8; font-weight: 600;">Adaptive Decision Support</span>
+          </div>
+          <div class="ai-insight-text" id="ai-insight-text">
+            Analyzing student attention curves and acoustic signals...
+          </div>
+          <div class="ai-recommendation-text" id="ai-recommendation-text">
+            Recommendation: Pacing synchronized with classroom feedback.
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- TAB 2: TEACHER CENTRAL (Page 40 top) -->
+    <section class="tab-pane" id="tab-teacher">
+      <div style="margin-bottom: 1.5rem;">
+        <h2 style="font-size: 1.5rem; font-weight: 800; color: #ffffff;">Teacher Profile</h2>
+        <p style="font-size: 0.9rem; color: #94a3b8;">Effectiveness Dashboard &amp; Longitudinal Analytics</p>
+      </div>
+
+      <div class="teacher-profile-hero">
+        <!-- Teaching Effectiveness Card -->
+        <div class="hero-stat-card">
+          <div class="hero-stat-label">Teaching Effectiveness</div>
+          <div class="hero-stat-num">
+            <span id="teacher-effectiveness-num">87.5</span>
+            <span class="hero-stat-denom">/ 100</span>
+          </div>
+          <div class="hero-stat-trend">
+            <svg width="14" height="14" fill="currentColor" viewBox="0 0 16 16">
+              <path fill-rule="evenodd" d="M8 12a.5.5 0 0 0 .5-.5V5.707l2.146 2.147a.5.5 0 0 0 .708-.708l-3-3a.5.5 0 0 0-.708 0l-3 3a.5.5 0 1 0 .708.708L7.5 5.707V11.5a.5.5 0 0 0 .5.5z"/>
+            </svg>
+            <span id="teacher-trend-num">+12.0% vs last month</span>
+          </div>
+        </div>
+
+        <!-- Strengths Card -->
+        <div class="card">
+          <div class="card-header">
+            <span class="card-title">Pedagogical Strengths</span>
+          </div>
+          <ul class="feature-list" id="teacher-strengths-list">
+            <li>High engagement sessions (85%+)</li>
+            <li>Emotion diversity management</li>
+            <li>Active audio discussion pacing</li>
+          </ul>
+        </div>
+
+        <!-- Recommendations Card -->
+        <div class="card">
+          <div class="card-header">
+            <span class="card-title">Pedagogical Recommendations</span>
+          </div>
+          <ul class="feature-list" id="teacher-recs-list">
+            <li>Try interactive polls (boost +18%)</li>
+            <li>Short video breaks (+25% re-engagement)</li>
+            <li>Check-in at mid-lecture transitions</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Class History Comparison -->
+      <div class="card">
+        <div class="card-header">
+          <span class="card-title">Class History Comparison</span>
+          <span style="font-size: 0.8rem; color: #64748b;">Previous Cohort Benchmarks</span>
+        </div>
+        <div class="class-history-grid" id="class-history-grid">
+          <!-- Populated dynamically by JS -->
+        </div>
+      </div>
+    </section>
+
+    <!-- TAB 3: SESSION ANALYTICS & REPORTS (Page 40 bottom & Page 41) -->
+    <section class="tab-pane" id="tab-analytics">
+      <div class="analytics-actions-bar">
+        <div>
+          <h2 style="font-size: 1.5rem; font-weight: 800; color: #ffffff;">Session Analytics</h2>
+          <p style="font-size: 0.9rem; color: #94a3b8;">Deep dive into classroom engagement and attendance records</p>
+        </div>
+        <div class="export-btn-group">
+          <button class="btn-export-pdf" id="btn-export-pdf">
+            <svg width="14" height="14" fill="currentColor" viewBox="0 0 16 16">
+              <path d="M14 14V4.5L9.5 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2zM9.5 3A1.5 1.5 0 0 0 11 4.5h2V14a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h5.5v2z"/>
+            </svg>
+            PDF Report
+          </button>
+          <button class="btn-export-csv" id="btn-export-csv">
+            <svg width="14" height="14" fill="currentColor" viewBox="0 0 16 16">
+              <path d="M.5 9.9a.5.5 0 0 1 .5.5v2.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2.5a.5.5 0 0 1 1 0v2.5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-2.5a.5.5 0 0 1 .5-.5z"/>
+              <path d="M7.646 11.854a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293V1.5a.5.5 0 0 0-1 0v8.793L5.354 8.146a.5.5 0 1 0-.708.708l3 3z"/>
+            </svg>
+            CSV Data
+          </button>
+        </div>
+      </div>
+
+      <!-- Charts Row -->
+      <div class="charts-row">
+        <!-- Attention Trend Chart (Page 40) -->
+        <div class="chart-card">
+          <div class="card-header">
+            <span class="card-title">Attention Trend Over Time</span>
+            <span style="font-size: 0.75rem; color: #6366f1; font-weight: 600;">% Attentive</span>
+          </div>
+          <div class="chart-container">
+            <canvas id="attention-chart-canvas"></canvas>
+          </div>
+        </div>
+
+        <!-- Emotion Distribution Chart (Page 40) -->
+        <div class="chart-card">
+          <div class="card-header">
+            <span class="card-title">Emotion Distribution</span>
+            <span style="font-size: 0.75rem; color: #10b981; font-weight: 600;">Observations</span>
+          </div>
+          <div class="chart-container">
+            <canvas id="emotion-chart-canvas"></canvas>
+          </div>
+        </div>
+      </div>
+
+      <!-- Reflective Student Session Feedback -->
+      <div class="feedback-card">
+        <div class="card-header">
+          <span class="card-title">Learner Reflective Summaries (Privacy-Preserving)</span>
+          <span style="font-size: 0.78rem; color: #94a3b8;">Evaluative Feedback Without Peer Ranking</span>
+        </div>
+        <table class="feedback-table">
+          <thead>
+            <tr>
+              <th>Student</th>
+              <th>Sustained Presence</th>
+              <th>Status</th>
+              <th>Avg Attention</th>
+              <th>Reflective Insight</th>
+            </tr>
+          </thead>
+          <tbody id="feedback-table-body">
+            <!-- Populated dynamically -->
+          </tbody>
+        </table>
+      </div>
+    </section>
+  </main>
+
+  <script src="/static/js/audio-capture.js"></script>
+  <script src="/static/js/app.js"></script>
+</body>
+</html>

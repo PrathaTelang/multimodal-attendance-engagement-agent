@@ -1,0 +1,13 @@
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+.env
+.env.*
+!.env.example
+.pytest_cache/
+.streamlit/secrets.toml
+*.log
+.DS_Store
+data/registered_students/roster.json
+backend/database/*.db
